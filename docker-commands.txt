@@ -1,0 +1,14 @@
+iniciar el contenedor:
+docker-compose up -d db
+
+entrar a la consola del contenedor:
+docker-compose exec db bash
+
+iniciar conexión:
+psql -h localhost -d db-asma -U nico
+
+bajar el contenedor:
+docker-compose stop db
+
+borrar el contenedo:
+docker-compose rm db

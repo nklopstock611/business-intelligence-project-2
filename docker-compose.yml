@@ -1,0 +1,16 @@
+version: '3.3'
+
+services:
+  db:
+    image: postgres:13
+    environment:
+      - POSTGRES_DB=db-asma
+      - POSTGRES_USER=nico
+      - POSTGRES_PASSWORD=!¿proyecto-asma?!
+    ports:
+      - '5432:5432'
+    volumes:
+      - ./data:/var/lib/postgresql
+volumes:
+  postgreqsl-volume:
+    external: true
