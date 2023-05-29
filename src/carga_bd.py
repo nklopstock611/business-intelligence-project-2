@@ -63,7 +63,9 @@ with open('data/tabla_enfermedad2021.csv', 'r') as f:
 cursor.execute("""
     CREATE TABLE DimLocalidad (
         localidad VARCHAR(20),
-        idLocalidad VARCHAR(20) PRIMARY KEY
+        idLocalidad VARCHAR(20) PRIMARY KEY,
+        longitud FLOAT,
+        latitud FLOAT
     );
 """)
 
@@ -72,7 +74,7 @@ with open('data/tabla_localidad2021.csv', 'r') as f:
     reader = csv.reader(f)
     next(reader)
     for row in reader:
-        inser_query = "INSERT INTO DimLocalidad VALUES (%s, %s)"
+        inser_query = "INSERT INTO DimLocalidad VALUES (%s, %s, %s, %s)"
         cursor.execute(inser_query, row)
 
 # Crear tabla de dimensión Estrato

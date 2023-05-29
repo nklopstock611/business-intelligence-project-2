@@ -1,21 +1,21 @@
-localidad,idLocalidad
-Chapinero,L1
-Ciudad BolÃ­var,L2
-Suba,L3
-Kennedy,L4
-FontibÃ³n,L5
-San CristÃ³bal,L6
-Rafael Uribe Uribe,L7
-Sumapaz,L8
-Usme,L9
-SantafÃ©,L10
-Puente Aranda,L11
-Tunjuelito,L12
-Antonio NariÃ±o,L13
-Teusaquillo,L14
-Bosa,L15
-EngativÃ¡,L16
-La Candelaria,L17
-Los MÃ¡rtires,L18
-Barrios Unidos,L19
-UsaquÃ©n,L20
+localidad,idLocalidad,longitud,latitud
+Chapinero,L1,-74.0467,4.6569
+Ciudad Bolivar,L2,-74.1539,4.5066
+Suba,L3,-74.0824,4.7652
+Kennedy,L4,-74.1573,4.6268
+Fontibon,L5,-74.1479,4.6832
+San Cristobal,L6,-74.0883,4.5463000000000005
+Rafael Uribe Uribe,L7,-74.1164,4.5653
+Sumapaz,L8,-74.315224,4.034746
+Usme,L9,-74.1033,4.4766
+Santafe,L10,-74.0298,4.5963
+Puente Aranda,L11,-74.1227,4.6149000000000004
+Tunjuelito,L12,-74.1407,4.5875
+Antonio Narinio,L13,-74.1009,4.5486
+Teusaquillo,L14,-74.0938,4.6448
+Bosa,L15,-74.1945,4.6305
+Engativa,L16,-74.1072,4.7071000000000005
+La Candelaria,L17,-74.0739,4.5939
+Los Martires,L18,-74.0913,4.603
+Barrios Unidos,L19,-74.084,4.6664
+Usaquen,L20,-74.0312,4.7485
