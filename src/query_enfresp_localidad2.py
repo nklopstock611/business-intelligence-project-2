@@ -11,51 +11,36 @@ conn = psycopg2.connect(
 cursor = conn.cursor()
 
 cursor.execute("""
-    SELECT dl.idlocalidad, dl.localidad, SUM(count)
+    SELECT dl.idlocalidad, dl.localidad, denf.enf_resp, dl.longitud, dl.latitud, SUM(count)
     FROM tablahechos as th JOIN dimlocalidad as dl
                             ON th.idlocalidad = dl.idlocalidad
                             JOIN DimEnfRespiratorias as denf
                             ON denf.idenfermedad = th.idenfrespiratorias
-    GROUP BY dl.idlocalidad, dl.localidad
+    GROUP BY dl.idlocalidad, dl.localidad, denf.enf_resp
     ORDER BY CAST(SUBSTRING(dl.idlocalidad, 2, 10) as int);
 """)
 
 localidades = cursor.fetchall()
 
 cursor.execute("""
-    CREATE TABLE Qcountlocalidad (
+    CREATE TABLE QcountlocalidadEnfR (
         id VARCHAR(20) PRIMARY KEY,
         localidad VARCHAR(20),
-        cantidad INT
-    );
-""")
-
-for localidad in localidades:
-    cursor.execute("""
-        INSERT INTO Qcountlocalidad VALUES (%s, %s, %s);
-    """, (localidad[0], localidad[1], localidad[2]))
-
-cursor.execute("""
-    SELECT ql.id, dl.localidad, ql.cantidad, dl.longitud, dl.latitud
-    FROM Qcountlocalidad as ql JOIN dimlocalidad as dl ON ql.id = dl.idlocalidad;
-""")
-
-juntos = cursor.fetchall()
-
-cursor.execute("""
-    CREATE TABLE Qcountlocalidad2 (
-        id VARCHAR(20) PRIMARY KEY,
-        localidad VARCHAR(20),
-        cantidad INT,   
+        cantidad INT,
         longitud FLOAT,
-        latitud FLOAT
+        latitud FLOAT,
+        enf_resp VARCHAR(20)
     );
 """)
 
-for j in juntos:
+for l in localidades:
+    if l[2] == 'No':
+        ide = str(l[0])  + 'N'
+    else:
+        ide = str(l[0]) + 'E'
     cursor.execute("""
-        INSERT INTO Qcountlocalidad2 VALUES (%s, %s, %s, %s, %s);
-    """, (j[0], j[1], j[2], j[3], j[4]))
+        INSERT INTO QcountlocalidadEnfR VALUES (%s, %s, %s, %s, %s, %s);
+    """, (ide, l[1], l[5], l[3], l[4], l[2]) )
 
 # Confirmar los cambios en la base de datos
 conn.commit()

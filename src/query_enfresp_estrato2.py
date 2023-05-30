@@ -23,17 +23,22 @@ cursor.execute("""
 estratos = cursor.fetchall()
 
 cursor.execute("""
-    CREATE TABLE Qcountestrato (
+    CREATE TABLE QcountestratoenfRespi (
         id VARCHAR(20) PRIMARY KEY,
+        estrato INT,
+        idenf VARCHAR(20),
         cantidad INT
     );
 """)
 
 for estrato in estratos:
+    if estrato[1] == 'No':
+        ide = str(estrato[0])  + 'N' 
+    else:
+        ide = str(estrato[0]) + 'E'
     cursor.execute("""
-        INSERT INTO QcountestratoenfRespi VALUES (%s, %s);
-    """, (estrato[0], estrato[1]))
-
+        INSERT INTO QcountestratoenfRespi VALUES (%s, %s, %s, %s);
+    """, (ide, estrato[0], estrato[1], estrato[2],) )
 # Confirmar los cambios en la base de datos
 conn.commit()
 
